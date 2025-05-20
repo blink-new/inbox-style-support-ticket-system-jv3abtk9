@@ -5,7 +5,6 @@ import { AlertCircle, Loader } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
-import { Label } from '../ui/label';
 import { useAuth } from '../../context/AuthContext';
 
 const RegisterForm = () => {
@@ -111,40 +110,32 @@ const RegisterForm = () => {
               onValueChange={(value) => setUserType(value as 'customer' | 'admin')}
               className="space-y-3"
             >
-              <div
+              <label
+                htmlFor="customer"
                 className={
-                  `flex items-center gap-3 rounded-lg border transition-colors cursor-pointer px-4 py-3 ` +
+                  `flex items-center gap-3 rounded-lg border transition-colors cursor-pointer px-4 py-3 select-none ` +
                   (userType === 'customer'
                     ? 'border-primary bg-primary/5 shadow-sm'
                     : 'border-gray-200 bg-white hover:bg-gray-50')
                 }
-                onClick={() => setUserType('customer')}
-                tabIndex={0}
-                role="radio"
-                aria-checked={userType === 'customer'}
-                onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') setUserType('customer') }}
               >
                 <RadioGroupItem value="customer" id="customer" className="h-5 w-5" />
-                <Label htmlFor="customer" className="text-base font-medium">Customer</Label>
+                <span className="text-base font-medium">Customer</span>
                 <span className="ml-2 text-xs text-gray-500">Create tickets & communicate with support</span>
-              </div>
-              <div
+              </label>
+              <label
+                htmlFor="admin"
                 className={
-                  `flex items-center gap-3 rounded-lg border transition-colors cursor-pointer px-4 py-3 ` +
+                  `flex items-center gap-3 rounded-lg border transition-colors cursor-pointer px-4 py-3 select-none ` +
                   (userType === 'admin'
                     ? 'border-primary bg-primary/5 shadow-sm'
                     : 'border-gray-200 bg-white hover:bg-gray-50')
                 }
-                onClick={() => setUserType('admin')}
-                tabIndex={0}
-                role="radio"
-                aria-checked={userType === 'admin'}
-                onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') setUserType('admin') }}
               >
                 <RadioGroupItem value="admin" id="admin" className="h-5 w-5" />
-                <Label htmlFor="admin" className="text-base font-medium">Support Admin</Label>
+                <span className="text-base font-medium">Support Admin</span>
                 <span className="ml-2 text-xs text-gray-500">Manage, assign, and respond to tickets</span>
-              </div>
+              </label>
             </RadioGroup>
           </div>
         </div>
